@@ -1,0 +1,33 @@
+open a txt file named employee and write a complete algorithm for the employee database you have coded
+
+
+1. import modules:
+    - st
+    - pandas
+
+2. read csv file
+
+3. create side bar with categories:
+   - Register Staff: where you get data for new staff:
+       When clicked on register staff you add new categories:
+           - names
+           - mail
+           - gender
+           - department
+           - seniority level
+           - contract status
+           - education level
+           - salary
+        - then when you click submit button, all the data will be sent from a created dictionary to a 'staff 
+        database'
+
+   - Staff Database: see all staff data in dataframe
+        All the data put in 'Register Staf', will be displayed in table format under certaian categories
+        e.g 
+First Name,Last Name,Gender,Mail Address,Date of Employment,Department,Seniority Level,Contract Status,Education Level,Salary
+Jane,Smith,Female,janesmith@gmail.com,2023-07-19,Medical,Junior Staff,Full Time,Bachelor Degree,10000
+Stewart,Zane,Male,stewart@gmail.com,2021-06-09,Security,Senior Staff,Full Time,Associate Degree,100000
+
+   - Staff File: search for specific individul staff record
+      text_input box to enter employee id adn search button to find the employee
+
