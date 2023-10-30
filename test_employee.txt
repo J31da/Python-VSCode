@@ -1,0 +1,93 @@
+EMPLOYEE TEST 1 (59 MARKS)
+
+1. What is the purpose of this Streamlit application? Describe its main functionalities?:
+ - to get employee data
+ - to display employee data in an employee database
+ - to use a generated employee ID to find specific employee's data
+
+
+2. Which libraries are imported at the beginning of the code, and what are their roles?:
+ - streamlit as st: to use multiple widgets in the website
+ - pandas as pd: to get the data frame layout
+
+
+3. How is the menu structured in this application, and what options are available to the user?:
+ -  It's structured from:
+     - Employee Registration
+     - Employee Database
+     - Employee Finder
+
+
+4. What type of data is loaded from the 'employee.csv' file, and how is it represented in the code?:
+ - the emloyees data and it's represented in the code in a commma seperated value
+
+
+5. What is the significance of the 'user_id' variable in the code?:
+ - the user_id is different and unique for each employee so it helps employers use the
+   different IDs to find specific employees
+
+
+6. In the 'Register Staff' section, what user inputs are collected, and how are they processed?:
+ - First Name, Last Name, Email Address, Departments, Job Title, Date of Employement,
+   Contract Status, Seniority Level, Education Level and Salary are collected and saved in a new
+   df to use as the employee database
+
+
+7. What is the purpose of the 'Contract Status' selection, and how does it affect the staff member's employment status?:
+ - Contract Status allows employers to see how much time an employee works for, whether
+   as a full time job or a side job; this affects the employees treatment rgarding matters such
+   as times of leave and salary
+
+
+8. Explain how the employee's data is saved when the "Submit Employee Data" button is clicked.:
+ - a new df is created and concatenated the the other df, the data is then transported &
+   saved to the csv file
+
+
+9. What happens if any of the required fields for registering a staff member are left blank?:
+ - the data will not be saved & the user will be asked to fill all boxes before
+   submiting the survey
+
+
+10. In the 'Staff File' section, how can an employee's details be found, and what input is required?:
+  - An employee's details can be found through the employee ID that is generated for each employee
+
+
+11. Describe what happens when the "Find Employee" button is pressed.:
+ - the ID that has been inputed will be searched for through the database and once found,
+   all data for the chosen employee will be displayed by means of the employee ID
+
+
+12. When an employee's details are found, what information is displayed on the page?:
+ - the employee's: First Name, Last Name, Email Address, Department, Job Title, Date of Employement,
+   Contract Status, Seniority Level, Education Level and Salary will be displayed on the page
+
+
+13. How is the employee's full name displayed in the application, and what elements are used to format it?:
+ - concatenation is used to display the employees full name together:
+     - eg: fn = "Jane"
+           ln = "Smith"
+           space = ""
+           fullname = fn + space + ln
+           st.write(fullname)
+
+
+14. What details about the employee's personal information are displayed, and how are they formatted?:
+- 
+
+
+What job-related information is shown for the employee, and how is it organized on the page?
+
+
+Explain how the salary is displayed and formatted in the Streamlit application.
+
+
+How is the code ensuring that the user inputs for email, gender, and other details are correctly processed and displayed?
+
+
+What happens if an invalid employee ID is entered, or if no employee is found with the specified ID?
+
+
+In the 'Register Staff' section, if you wanted to add more options for 'Department' and 'Job Title', how would you do it?
+
+

@@ -15,7 +15,8 @@ if choice == 'Staff Database':
 
 
 if choice == 'Register Staff':
- st.subheader("Employee's Name")
+ st.subheader("Registration")
+ st.write("")
  fn,ln = st.columns(2)
  with fn:
      name = st.text_input("First Name: ")
@@ -27,7 +28,7 @@ if choice == 'Register Staff':
  with gender:
      gender = st.selectbox(
          'Gender',
-         ('Male', 'Female', 'Other'))
+         ('Male', 'Female'))
      
  department = st.selectbox(
     'Department',
@@ -52,35 +53,92 @@ if choice == 'Register Staff':
  date = st.date_input("Employememt Date")
  
  df= pd.read_csv('employee.csv')
- def add_employ(user_id,name,name2,date,salary,gender,mail,department,jobttle,edulevel,timespent,df):
-  employ_dict = {'User ID':user_id,'First Name':name,'Last Name':name2,'Date of Employment':date,'Salary':salary,'Gender':gender,'Mail Address':mail,'Department':department,
-                  'Seniority Level':jobttle,'Education Level':edulevel,'Contract Status':timespent}
-  employ_df = pd.DataFrame([employ_dict]) 
-  df = pd.concat([df,employ_df],ignore_index=True) 
-  return df
+
 
  if st.button("Submit Employee Survey"):
      if (user_id and name and name2 and date and salary and gender and mail and department and jobttle and edulevel and timespent):
-            df = add_employ(user_id,name,name2,date,salary,gender,mail,department,jobttle,edulevel,timespent,df)
-            df.to_csv('employee.csv',index=False)
-            st.success('Employee Data Saved')
+             employees_df = pd.DataFrame({'User ID':[user_id],'First Name':[name],'Last Name':[name2],'Date of Employment':[date],'Salary':[salary],'Gender':[gender],'Mail Address':[mail],'Department':[department],
+                    'Seniority Level':[jobttle],'Education Level':[edulevel],'Contract Status':[timespent]})
+             new_df = pd.concat([df,employees_df],ignore_index=True)
+             new_df.to_csv('employee.csv',index=False)
+             st.success('Employee Data Saved')
      else :
          st.error('Kindly Fill All The Boxes')
 
 if choice == 'Staff File':
-   st.subheader("Find Employee Details")
-   space1,space2,finder = st.columns([2,2,1.5])
+   space1,space2,finder = st.columns([2,1,1.7])
    with finder:
-        find = st.text_input("Enter Employee ID ")
-        if st.button("Find Employee"):
-            if find:
-                find_result = df[df['User ID'] == find ]
-                getfn = find_result['First Name'].iloc[0]
-                getln = find_result['Last Name'].iloc[0]
-                getmail = find_result['Mail Address'].iloc[0]
-                getgender = find_result['Gender'].iloc[0]
-                st.subheader(getfn)
-                st.write(f"Email: {getmail}")
-                st.write(f"Gender: {getgender}")
-                st.write(getln)
+        st.subheader("Find Employee Details")
+        st.write("")
+        find1,find2 = st.columns([2,1])
+        with find1:
+         find = st.text_input("Enter Employee ID ")
+         findbutton = st.button("Find Employee")
+        
+
+   if findbutton:
+        if find:
+            find_result = df[df['User ID'] == find ]
+            getfn = find_result['First Name'].iloc[0]
+            getln = find_result['Last Name'].iloc[0]
+            getmail = find_result['Mail Address'].iloc[0]
+            getgender = find_result['Gender'].iloc[0]
+            getdep = find_result['Department'].iloc[0]
+            getuser = find_result['User ID'].iloc[0]
+            getemploydate = find_result['Date of Employment'].iloc[0]
+            getsl = find_result['Seniority Level'].iloc[0]
+            getcs = find_result['Contract Status'].iloc[0]
+            getsal = find_result['Salary'].iloc[0]
+            getedulevel = find_result['Education Level'].iloc[0]
+    
+        
+            st.write("")
+            st.write("")
+            sp1,sp2,sp3 = st.columns([0.5,2,0.5])
+          
+            with sp2:
+                space = " "
+                
+                
+                fullname = getfn + space + getln
+                st.subheader(f':blue[{fullname}]')
+                st.divider()
+                mmail,ggender,other = st.columns(3)
+                with mmail:
+                 st.write("**Email**")
+                 st.write(getmail)
+                with ggender:
+                 st.write("**Gender**")
+                 st.write(getgender)
+                with other:
+                   st.write("**Education Level**")
+                   st.write(getedulevel)
+
+                st.divider()
+                st.subheader("**Job Information**")
+                st.divider()
+                one,two,thre = st.columns(3)
+                with one:
+                 st.write("**Department**")
+                 st.write(getdep)
+                with two:
+                 st.write("**Employee ID**")
+                 st.write(getuser)
+                with thre:
+                 st.write("**Date Of Employement**")
+                 st.write(getemploydate)
+                
+                st.divider()
+                fou,fiv,six = st.columns(3)
+                with fou:
+                 st.write("**Seniority Level**")
+                 st.write(getsl)
+                with fiv:
+                 st.write("**Contract Status**")
+                 st.write(getcs)
+                with six:
+                 st.write("**Salary**")
+                 st.write(f'{getsal:,} AED')
+
+
 
