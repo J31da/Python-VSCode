@@ -3,12 +3,16 @@ import pandas as pd
 
 st.set_page_config(layout='wide')
 
-menu = ['Register Patient','Patient Database']
+menu = ['Register Patient','Patient Database','Find Patient']
 choice = st.sidebar.selectbox('Menu',menu)
 
+df = pd.read_csv('hospitalpatients.csv')
+patient_id = 'PATIENT' + str(len(df) + 1)
+
 if choice == 'Patient Database':
-    df= pd.read_csv('hospitalpatients.csv')
-    st.dataframe(df)
+    st.dataframe(df,use_container_width=True)
+
+    
 
 
 
@@ -70,15 +74,53 @@ if choice == 'Register Patient':
  with postcode:
      Postcode = st.text_input("Postcode")
 
-
- df= pd.read_csv('hospitalpatients.csv')
- def add_patients(title,Dor,name,lastname,Dob,chosengender,mobilenum,Address,homenum,Mail,country,Postcode,df):
-  patients_dict = {'Title':title,'Date Of Registration':Dor,'First Name':name,'Last Name':lastname,'Date Of Birth':Dob,'Gender':chosengender,
-                   'Mobile Number':mobilenum,'Address':Address,'Home Number':homenum,'Mail':Mail,'Location':country,'Postcode':Postcode}
-  patients_df = pd.DataFrame([patients_dict]) 
-  df = pd.concat([df,patients_df],ignore_index=True) 
-  return df
+ df = pd.read_csv('hospitalpatients.csv')
 
  if st.button("Register"):
-     df = add_patients(title,Dor,name,lastname,Dob,chosengender,mobilenum,Address,homenum,Mail,country,Postcode,df)
-     df.to_csv('hospitalpatients.csv',index=False)
+     if (patient_id and title and Dor and name and lastname and Dob and chosengender and mobilenum and Address and homenum and Mail and country and Postcode):
+        patient_df = pd.DataFrame({'Patient ID':[patient_id],'Title':[title],'Date Of Registration':[Dor],'First Name':[name],'Last Name':[lastname],'Date Of Birth':[Dob],'Gender':[chosengender],
+                   'Mobile Number':[mobilenum],'Address':[Address],'Home Number':[homenum],'Mail':[Mail],'Location':[country],'PostCode':[Postcode]}) 
+        new_df = pd.concat([df,patient_df],ignore_index=True)
+        new_df.to_csv('hospitalpatients.csv',index=False)
+        st.success("Successfuly Registered!")
+
+     else:
+         st.error("Kindly Fill In All Boxes")
+
+ 
+if choice == 'Find Patient':
+    spc1,spc2,fspc = st.columns([2,1,1.7])
+    with fspc:
+        st.subheader("Find Patient Details")
+        st.write("")
+        fn1,fn2 = st.columns([2,1])
+        with fn1:
+            find = st.text_input("Enter Patient ID")
+            st.write("")
+            fnbut = st.button("Find Patient")
+
+    if fnbut:
+        if find:
+            fnd_result = df[df['Patient ID'] == find]
+            getttle = fnd_result['Title'].iloc[0]
+            getdor = fnd_result['Date Of Registration'].iloc[0]
+            getfn = fnd_result['First Name'].iloc[0]
+            getln = fnd_result['Last Name'].iloc[0]
+            getdob = fnd_result['Date Of Birth'].iloc[0]
+            getgen = fnd_result['Gender'].iloc[0]
+            getmobnum = fnd_result['Mobile Number'].iloc[0]
+            getadd = fnd_result['Address'].iloc[0]
+            gethomenum = fnd_result['Home Number'].iloc[0]
+            getmail = fnd_result['Mail'].iloc[0]
+            getloc = fnd_result['Location'].iloc[0]
+            getpostc = fnd_result['PostCode'].iloc[0]
+
+            st.write("")
+            sp1,sp2,sp3 = st.columns([0.5,2,0.5])
+            with sp2:
+                space = " "
+
+                fulln = getttle + space + getfn + space + getln
+                st.subheader(f':blue[{fulln}]')
+                st.divider()
+                

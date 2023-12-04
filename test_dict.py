@@ -7,12 +7,13 @@
 import streamlit as st
 import pandas as pd
 
+
 info_dict = {
-    "First Name" : ["Jeida"],
-    "Last Name" : ["Adewusi"],
-    "Age" : [13],
-    "Date Of Birth" : ["2010"],
-    "Nationality" : "Nigerian",
+    "First Name" : ["Jeida", "Jayden"],
+    "Last Name" : ["Adewusi", "Adewusi"],
+    "Age" : [13, 9],
+    "Date Of Birth" : ["2010", "2014"],
+    "Nationality" : ["Nigerian", "Nigerian"]
 }
 
 st.write(info_dict)
