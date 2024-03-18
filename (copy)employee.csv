@@ -1,0 +1,7 @@
+User ID,First Name,Last Name,Gender,Mail Address,Date of Employment,Department,Seniority Level,Contract Status,Education Level,Salary
+USER1,Jada,Smith,Female,janesmith@gmail.com,2023-07-19,Medical,Junior Staff,Full Time,Bachelor Degree,10000
+USER2,Stewart,Zane,Male,stewart@gmail.com,2021-06-09,Security,Senior Staff,Full Time,Associate Degree,100000
+USER3,Matthew,Nernant,Male,mattnernant@gmail.com,2023-10-16,Management,Junior Staff,Full Time,Associate Degree,10000
+USER4,Peter,Banks,Male,peterbanks@gmail.com,2020-10-15,Human Resources,Senior Staff,Full Time,Bachelor Degree,150000
+USER5,Marcia,Garcia,Female,marcia@gmail.com,2023-10-24,Accounting,Supervisor,Full Time,Professional Degree,250000
+USER6,Mary,Grace,Female,mary@gmail.com,2023-10-24,Human Resources,Senior Staff,Full Time,Graduate Degree,120000

@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import plotly.express as px
 
 st.set_page_config(layout='wide')
 
@@ -10,9 +11,8 @@ df = pd.read_csv('employee.csv')
 user_id = 'USER' + str(len(df) + 1)
 
 if choice == 'Staff Database':
-    st.dataframe(df,use_container_width=True)
-
-
+ st.table(df)
+ 
 
 if choice == 'Register Staff':
  st.subheader("Registration")
