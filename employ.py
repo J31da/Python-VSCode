@@ -74,7 +74,6 @@ if choice == 'Staff File':
         with find1:
          find = st.text_input("Enter Employee ID ")
          findbutton = st.button("Find Employee")
-        
 
    if findbutton:
         if find:
