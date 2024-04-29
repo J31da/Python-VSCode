@@ -19,7 +19,6 @@ with cl1:
     if upload:
       csv_file = pd.read_csv(upload)
       st.write(csv_file)
-      #edit_csv = st.data_editor(csv_file,use_container_width=True)
   
     csv_list = csv_file['title'].to_list()
     sub = st.multiselect(

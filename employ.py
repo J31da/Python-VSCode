@@ -5,7 +5,9 @@ import plotly.express as px
 st.set_page_config(layout='wide')
 
 menu = ['Register Staff','Staff Database','Staff File']
+
 choice = st.sidebar.selectbox('Menu',menu)
+st.sidebar.write('**Made By Jeida**')
 
 df = pd.read_csv('employee.csv')
 user_id = 'USER' + str(len(df) + 1)
@@ -77,67 +79,81 @@ if choice == 'Staff File':
 
    if findbutton:
         if find:
-            find_result = df[df['User ID'] == find ]
-            getfn = find_result['First Name'].iloc[0]
-            getln = find_result['Last Name'].iloc[0]
-            getmail = find_result['Mail Address'].iloc[0]
-            getgender = find_result['Gender'].iloc[0]
-            getdep = find_result['Department'].iloc[0]
-            getuser = find_result['User ID'].iloc[0]
-            getemploydate = find_result['Date of Employment'].iloc[0]
-            getsl = find_result['Seniority Level'].iloc[0]
-            getcs = find_result['Contract Status'].iloc[0]
-            getsal = find_result['Salary'].iloc[0]
-            getedulevel = find_result['Education Level'].iloc[0]
-    
+            try:
+                find_result = df[df['User ID'].str.lower() == find.lower() ]
+                getfn = find_result['First Name'].iloc[0]
+                getln = find_result['Last Name'].iloc[0]
+                getmail = find_result['Mail Address'].iloc[0]
+                getgender = find_result['Gender'].iloc[0]
+                getdep = find_result['Department'].iloc[0]
+                getuser = find_result['User ID'].iloc[0]
+                getemploydate = find_result['Date of Employment'].iloc[0]
+                getsl = find_result['Seniority Level'].iloc[0]
+                getcs = find_result['Contract Status'].iloc[0]
+                getsal = find_result['Salary'].iloc[0]
+                getedulevel = find_result['Education Level'].iloc[0]
         
-            st.write("")
-            st.write("")
-            sp1,sp2,sp3 = st.columns([0.5,2,0.5])
-          
-            with sp2:
-                space = " "
-                
-                
-                fullname = getfn + space + getln
-                st.subheader(f':blue[{fullname}]')
-                st.divider()
-                mmail,ggender,other = st.columns(3)
-                with mmail:
-                 st.write("**Email**")
-                 st.write(getmail)
-                with ggender:
-                 st.write("**Gender**")
-                 st.write(getgender)
-                with other:
-                   st.write("**Education Level**")
-                   st.write(getedulevel)
+            
+            
+                st.write("")
+                st.write("")
+                sp1,sp2,sp3 = st.columns([0.5,2,0.5])
+            
+                with sp2:
+                    space = " "
+                    
+                    
+                    fullname = getfn + space + getln
+                    st.subheader(f':blue[{fullname}]')
+                    st.divider()
+                    mmail,ggender,other = st.columns(3)
+                    with mmail:
+                      st.write("**Email**")
+                      st.write(getmail)
+                    with ggender:
+                     st.write("**Gender**")
+                     st.write(getgender)
+                    with other:
+                     st.write("**Education Level**")
+                     st.write(getedulevel)
 
-                st.divider()
-                st.subheader("**Job Information**")
-                st.divider()
-                one,two,thre = st.columns(3)
-                with one:
-                 st.write("**Department**")
-                 st.write(getdep)
-                with two:
-                 st.write("**Employee ID**")
-                 st.write(getuser)
-                with thre:
-                 st.write("**Date Of Employement**")
-                 st.write(getemploydate)
-                
-                st.divider()
-                fou,fiv,six = st.columns(3)
-                with fou:
-                 st.write("**Seniority Level**")
-                 st.write(getsl)
-                with fiv:
-                 st.write("**Contract Status**")
-                 st.write(getcs)
-                with six:
-                 st.write("**Salary**")
-                 st.write(f'{getsal:,} AED')
-
-
-
+                    st.divider()
+                    st.subheader("**Job Information**")
+                    st.divider()
+                    one,two,thre = st.columns(3)
+                    with one:
+                     st.write("**Department**")
+                     st.write(getdep)
+                    with two:
+                     st.write("**Employee ID**")
+                     st.write(getuser)
+                    with thre:
+                     st.write("**Date Of Employement**")
+                     st.write(getemploydate)
+                    
+                    st.divider()
+                    fou,fiv,six = st.columns(3)
+                    with fou:
+                     st.write("**Seniority Level**")
+                     st.write(getsl)
+                    with fiv:
+                     st.write("**Contract Status**")
+                     st.write(getcs)
+                    with six:
+                     st.write("**Salary**")
+                     st.write(f'{getsal:,} AED')
+                    
+                    st.write('')
+                    if st.button('Delete User'):
+                     df = df.drop(df[df['user_id'] == find].index)
+                     df.to_csv('employee.csv', index=False)    
+            
+            except IndexError:
+               with find1:
+                  st.warning('Enter Correct User ID')
+       
+        else:
+          with find1:
+                st.write('')
+                st.error('Enter User ID')
+              
